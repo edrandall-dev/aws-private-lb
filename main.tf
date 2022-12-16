@@ -5,6 +5,8 @@ terraform {
     bucket = "edrandall-dev"
     key    = "terraform.tfstate"
     region = "us-east-1"
+    profile = "neo4j-product-na"
+
   }
 
   required_providers {
@@ -15,8 +17,8 @@ terraform {
   }
 }
 
-//Use local "edr-neo4j" profile
+//Use neo4j-product-na aws profile
 provider "aws" {
   region  = var.region
-  profile = "ed-neo4j"
+  profile = "neo4j-product-na"
 }
