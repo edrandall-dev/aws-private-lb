@@ -2,9 +2,9 @@
 //terraform config
 terraform {
   backend "s3" {
-    bucket = "edrandall-dev"
-    key    = "terraform.tfstate"
-    region = "us-east-1"
+    bucket  = "edrandall-dev"
+    key     = "terraform.tfstate"
+    region  = "us-east-1"
     profile = "neo4j-product-na"
 
   }
