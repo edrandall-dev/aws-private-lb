@@ -5,7 +5,6 @@ variable "region" {
 variable "availability_zones" {
   description = "A list containing 3 AZs"
   type        = list(string)
-  default     = ["a", "b", "c"]
 }
 
 variable "base_cidr_block" {
