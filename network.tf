@@ -40,7 +40,7 @@ resource "aws_subnet" "ed_privlb_private_subnet" {
   }
 }
 
-resource "aws_internet_gateway" "ed-neo4j-igw" {
+resource "aws_internet_gateway" "ed-igw" {
   vpc_id = aws_vpc.ed_privlb_vpc.id
 
   tags = {
@@ -50,7 +50,7 @@ resource "aws_internet_gateway" "ed-neo4j-igw" {
   }
 }
 
-resource "aws_route_table" "ed_neo4j_public_subnet_rt" {
+resource "aws_route_table" "ed_public_subnet_rt" {
   vpc_id = aws_vpc.ed_privlb_vpc.id
   tags = {
     "Name"      = "${var.env_prefix}-public-subnet-rt"
@@ -59,7 +59,7 @@ resource "aws_route_table" "ed_neo4j_public_subnet_rt" {
   }
 }
 
-resource "aws_route_table" "ed_neo4j_private_subnet_rt" {
+resource "aws_route_table" "ed_private_subnet_rt" {
   vpc_id = aws_vpc.ed_privlb_vpc.id
   tags = {
     "Name"      = "${var.env_prefix}-private-subnet-rt"
@@ -68,18 +68,15 @@ resource "aws_route_table" "ed_neo4j_private_subnet_rt" {
   }
 }
 
-/*
-
-
-resource "aws_route" "ed_neo4j_public_subnet_route" {
-  route_table_id         = aws_route_table.ed_neo4j_public_subnet_rt.id
+resource "aws_route" "ed_public_subnet_route" {
+  route_table_id         = aws_route_table.ed_public_subnet_rt.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.ed-neo4j-igw.id
+  gateway_id             = aws_internet_gateway.ed-igw.id
 }
 
-resource "aws_route_table_association" "edr_neo4j_proxy_route_assoc" {
-  subnet_id      = aws_subnet.ed_neo4j_public_subnet.id
-  route_table_id = aws_route_table.ed_neo4j_public_subnet_rt.id
-}
 
-*/
+resource "aws_route_table_association" "edr_public_route_assoc" {
+  count = 2
+  subnet_id                 = aws_subnet.ed_privlb_public_subnet[count.index].id
+  route_table_id = aws_route_table.ed_public_subnet_rt.id
+}
