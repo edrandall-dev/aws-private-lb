@@ -1,4 +1,4 @@
-resource "aws_lb" "ed_privlb_alb" {
+resource "aws_lb" "ed_alb" {
   name               = "ed-alb"
   internal           = false
   load_balancer_type = "application"
@@ -13,15 +13,22 @@ resource "aws_lb" "ed_privlb_alb" {
   }
 }
 
-/*
-resource "aws_alb_listener" "listener_http" {
-  load_balancer_arn = "${aws_alb.ed_privlb_alb.arn}"
+resource "aws_alb_listener" "ed_listener_http" {
+  load_balancer_arn = aws_lb.ed_alb.arn
   port              = "80"
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.group.arn}"
+    target_group_arn = "${aws_lb_target_group.ed_alb_tg.arn}"
     type             = "forward"
   }
 }
-*/
+
+resource "aws_lb_target_group" "ed_alb_tg" {
+  name        = "ed-alb-tg"
+  target_type = "alb"
+  port        = 80
+  protocol    = "TCP"
+  vpc_id      = aws_vpc.ed_vpc.id
+}
+
