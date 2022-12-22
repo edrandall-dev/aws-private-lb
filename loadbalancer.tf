@@ -1,15 +1,10 @@
 resource "aws_lb" "ed_privlb_alb" {
-  name               = "ed-privlb-alb"
+  name               = "ed-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.ed_loadbalancer_sg.id]
   
-  //subnets = concat([for privatesubnet in aws_subnet.ed_privlb_private_subnet : privatesubnet.id],
-  //                 [for publicsubnet in aws_subnet.ed_privlb_public_subnet: publicsubnet.id])
-  
-  subnets = [for publicsubnet in aws_subnet.ed_privlb_public_subnet: publicsubnet.id]
-
-  enable_deletion_protection = true
+  subnets = [for subnet in aws_subnet.ed_public_subnet: subnet.id]
 
   tags = {
     "Name"      = "${var.env_prefix}_alb"

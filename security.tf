@@ -1,6 +1,6 @@
 resource "aws_security_group" "ed_webserver_sg" {
   name   = "ed_webserver_sg"
-  vpc_id = aws_vpc.ed_privlb_vpc.id
+  vpc_id = aws_vpc.ed_vpc.id
 
   # No restrictions on traffic originating from inside the VPC
   ingress {
@@ -27,7 +27,7 @@ resource "aws_security_group" "ed_webserver_sg" {
 
 resource "aws_security_group" "ed_loadbalancer_sg" {
   name   = "ed_loadbalancer_sg"
-  vpc_id = aws_vpc.ed_privlb_vpc.id
+  vpc_id = aws_vpc.ed_vpc.id
 
   # No restrictions on traffic originating from inside the VPC
   ingress {

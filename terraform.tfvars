@@ -2,7 +2,7 @@ region          = "us-east-1"
 base_cidr_block = "192.168.0.0/16"
 creator         = "Ed Randall"
 
-env_prefix = "aws_prvlb"
+env_prefix = "ed-"
 
 availability_zones = ["a", "b", "c"]
 
