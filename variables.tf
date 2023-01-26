@@ -1,5 +1,5 @@
 variable "region" {
-  description = "The AWS region in which the neo4j instances will be deployed"
+  description = "The AWS region in which the www instances will be deployed"
 }
 
 variable "availability_zones" {

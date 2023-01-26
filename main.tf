@@ -16,7 +16,7 @@ terraform {
   }
 }
 
-//Use neo4j-product-na aws profile
+//Use www-product-na aws profile
 provider "aws" {
   region  = var.region
   profile = "product-na"
