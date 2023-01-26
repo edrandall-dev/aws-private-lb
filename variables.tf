@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "availability_zones" {
-  description = "A list containing 3 AZs"
+  description = "A list containing 2 AZs"
   type        = list(string)
 }
 
@@ -15,6 +15,8 @@ variable "env_prefix" {
   description = "A prefix which is useful for tagging and naming"
 }
 
-variable "creator" {
-  description = "Details of the environment's creator"
+variable "instance_count" {
+  description = "The number of EC2 instances to be deployed"
+  type = number
+  default = 4
 }

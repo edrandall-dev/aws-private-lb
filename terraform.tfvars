@@ -1,15 +1,8 @@
 region          = "us-east-1"
 base_cidr_block = "192.168.0.0/16"
-creator         = "Ed Randall"
 
-env_prefix = "ed-"
+env_prefix = "aws-priv-test"
 
-availability_zones = ["a", "b", "c"]
+availability_zones = ["a", "b"]
 
-/*
-instance_types = {
-  "ed_k8s_cp_instance" = "t3.small",
-  "ed_k8s_worker_instance" = "t3.small"
-}
-*/
 

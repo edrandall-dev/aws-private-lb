@@ -1,4 +1,3 @@
-
 //terraform config
 terraform {
   backend "s3" {
