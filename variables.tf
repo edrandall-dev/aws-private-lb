@@ -17,6 +17,5 @@ variable "env_prefix" {
 
 variable "instance_count" {
   description = "The number of EC2 instances to be deployed"
-  type = number
-  default = 4
+  type        = number
 }

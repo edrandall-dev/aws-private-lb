@@ -6,8 +6,6 @@ resource "aws_instance" "www_instance" {
 
   subnet_id              = element(aws_subnet.test_env_private_subnet.*.id, count.index % 2)
   vpc_security_group_ids = ["${aws_security_group.test_env_webserver_sg.id}"]
-  //iam_instance_profile = aws_iam_instance_profile.www_instance_profile.name
-  //depends_on           = [aws_lb.www_lb]
 
   user_data = file("userdata.sh")
 
@@ -15,5 +13,4 @@ resource "aws_instance" "www_instance" {
     "Name"      = "${var.env_prefix}-webserver"
     "Terraform" = true
   }
-
 }

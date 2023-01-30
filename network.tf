@@ -10,7 +10,7 @@ resource "aws_vpc" "test_env_vpc" {
 }
 
 resource "aws_subnet" "test_env_public_subnet" {
-  count = 2 //Three subnets are required (across 3 AZs)
+  count = var.instance_count //For this example, we need 1 *public* subnet per instance
 
   vpc_id                  = aws_vpc.test_env_vpc.id
   cidr_block              = cidrsubnet(var.base_cidr_block, 8, count.index + 1)
@@ -24,7 +24,7 @@ resource "aws_subnet" "test_env_public_subnet" {
 }
 
 resource "aws_subnet" "test_env_private_subnet" {
-  count = 2 //Three subnets are required (across 3 AZs)
+  count = var.instance_count //For this example, we need 1 *private* subnet per instance
 
   vpc_id                  = aws_vpc.test_env_vpc.id
   cidr_block              = cidrsubnet(var.base_cidr_block, 8, count.index + 10)
