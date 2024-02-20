@@ -15,7 +15,12 @@ variable "env_prefix" {
   description = "A prefix which is useful for tagging and naming"
 }
 
-variable "instance_count" {
-  description = "The number of EC2 instances to be deployed"
+variable "webserver_count" {
+  description = "The number of EC2 web servers to be deployed"
+  type        = number
+}
+
+variable "bastion_count" {
+  description = "The number of EC2 bastion servers to be deployed"
   type        = number
 }
