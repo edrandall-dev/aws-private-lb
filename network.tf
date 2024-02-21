@@ -13,7 +13,7 @@ resource "aws_subnet" "test_env_public_subnet" {
   count = var.webserver_count //For this example, we need 1 *public* subnet per instance
 
   vpc_id                  = aws_vpc.test_env_vpc.id
-  cidr_block              = cidrsubnet(var.base_cidr_block, 8, count.index + 1)
+  cidr_block              = cidrsubnet(var.base_cidr_block, 8, count.index + 10)
   availability_zone       = join("", ["${var.region}", "${var.availability_zones[count.index]}"])
   map_public_ip_on_launch = true
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "test_env_private_subnet" {
   count = var.webserver_count //For this example, we need 1 *private* subnet per instance
 
   vpc_id                  = aws_vpc.test_env_vpc.id
-  cidr_block              = cidrsubnet(var.base_cidr_block, 8, count.index + 10)
+  cidr_block              = cidrsubnet(var.base_cidr_block, 8, count.index + 100)
   availability_zone       = join("", ["${var.region}", "${var.availability_zones[count.index]}"])
   map_public_ip_on_launch = false
 

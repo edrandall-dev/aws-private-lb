@@ -21,7 +21,7 @@ resource "aws_instance" "bastion_instance" {
 
   instance_type = "t3.micro"
 
-  subnet_id = element(aws_subnet.test_env_public_subnet.*.id, count.index % 2)
+  subnet_id = element(aws_subnet.test_env_public_subnet.*.id, count.index +1 % 2)
 
   vpc_security_group_ids = ["${aws_security_group.test_env_bastion_sg.id}"]
 
